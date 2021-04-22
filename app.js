@@ -3,13 +3,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
+require('dotenv').config()
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 const MongoClient = require("mongodb").MongoClient;
 
-MongoClient.connect("mongodb+srv://admin:NPMu6cRXDZhZ5zb@nyhetsbrev.oxnvr.mongodb.net/nyhetsbrev?retryWrites=true&w=majority", {
+MongoClient.connect(process.env.DB_URI, {
         useUnifiedTopology: true
 })
 .then(client => {

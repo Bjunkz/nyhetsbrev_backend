@@ -23,7 +23,7 @@ router.post('/login', (req, res) =>{
     let user = req.body;
     let findUser = results.find(a => a.userName == user.userName)
     if(findUser){
-    let storedPass = CryptoJS.AES.decrypt(findUser.password, "Salt Nyckel").toString()
+    let storedPass = CryptoJS.AES.decrypt(findUser.password, "Salt Nyckel").toString(CryptoJS.enc.Utf8)
       if(user.password == storedPass){
         res.json({"code": "success",
                  "userKey": findUser.userKey })
