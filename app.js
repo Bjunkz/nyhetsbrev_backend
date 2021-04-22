@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 
 const MongoClient = require("mongodb").MongoClient;
 
-MongoClient.connect("mongodb://127.0.0.1:27017", {
+MongoClient.connect("mongodb+srv://admin:NPMu6cRXDZhZ5zb@nyhetsbrev.oxnvr.mongodb.net/nyhetsbrev?retryWrites=true&w=majority", {
         useUnifiedTopology: true
 })
 .then(client => {

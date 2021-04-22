@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var rand = require("random-key");
+var CryptoJS = require("crypto-js");
 
 
 // get/hämta alla 
@@ -22,7 +23,8 @@ router.post('/login', (req, res) =>{
     let user = req.body;
     let findUser = results.find(a => a.userName == user.userName)
     if(findUser){
-      if(user.password == findUser.password){
+    let storedPass = CryptoJS.AES.decrypt(findUser.password, "Salt Nyckel").toString()
+      if(user.password == storedPass){
         res.json({"code": "success",
                  "userKey": findUser.userKey })
         console.log("success");
@@ -47,12 +49,14 @@ router.post('/post', function(req, res, next) {
     if (findUser == undefined){
 
         let key = rand.generate()
+        let userPass = newUser.password;
+        let cryptedPass = CryptoJS.AES.encrypt(userPass, "Salt Nyckel").toString()
 
         let newUserObject = {
           "firstName": newUser.firstName,
           "lastName": newUser.lastName,
           "userName": newUser.userName,
-          "password": newUser.password,
+          "password": cryptedPass,
           "email": newUser.email,
           "newsletter": newUser.newsletter == true ? true : false,
           "userKey": key
