@@ -28,7 +28,10 @@ router.post('/admin/login', function(req, res, next) {
 
       for (user in results){
         usersTemplate += `<div>${results[user].userName}</div>`
-        emailTemplate += `<div>${results[user].email}</div>`
+        if(results[user].newsletter == true){
+          emailTemplate += `<div>${results[user].email}</div>`
+        }
+        
       }
  
       let adminLoginTemplate = `
