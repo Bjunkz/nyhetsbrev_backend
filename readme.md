@@ -13,4 +13,8 @@ npm install
 som lägger till alla nödvändiga paket. 
 
 
-ADMIN-panelen nås genom 
+ADMIN-panelen nås genom länken
+
+https://nyhetsbrev-bjunkz.herokuapp.com/admin
+
+lösenord: admin

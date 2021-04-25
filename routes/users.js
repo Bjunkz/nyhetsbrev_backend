@@ -58,7 +58,7 @@ router.post('/post', function(req, res, next) {
           "userName": newUser.userName,
           "password": cryptedPass,
           "email": newUser.email,
-          "newsletter": newUser.newsletter == true ? true : false,
+          "newsletter": newUser.newsletter == "true" ? true : false,
           "userKey": key
             };
 
