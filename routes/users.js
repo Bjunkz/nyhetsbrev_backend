@@ -51,6 +51,12 @@ router.post('/post', function(req, res, next) {
         let key = rand.generate()
         let userPass = newUser.password;
         let cryptedPass = CryptoJS.AES.encrypt(userPass, "Salt Nyckel").toString()
+        let subscribed = ""
+        if(newUser.newsLetter== "true" || newUser.newsLetter== "true"){
+          subscribed = true;
+        } else {
+          subscribed = false;
+        }
 
         let newUserObject = {
           "firstName": newUser.firstName,
@@ -58,7 +64,7 @@ router.post('/post', function(req, res, next) {
           "userName": newUser.userName,
           "password": cryptedPass,
           "email": newUser.email,
-          "newsletter": newUser.newsletter == "true" ? true : false,
+          "newsletter": subscribed,
           "userKey": key
             };
 
